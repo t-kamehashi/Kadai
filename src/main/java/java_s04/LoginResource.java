@@ -33,7 +33,7 @@ import dao.PhotoDAO;
 import dao.PostDAO;
 
 /**
- * 従業員関連のサービス実装。
+ * 従業員関連のサービス実装。Test
  * Servlet/JSPの実装とは異なり、画像についてはバイナリでなくpathベースで扱うものとする。
  */
 @Path("login")
