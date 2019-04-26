@@ -4,6 +4,7 @@ var rootUrl = "/java_s04/api/v1.1/posts";
 
 findAll();
 
+/*
 $('#savePost').click(function() {
 	var name = $('#name').val();
 	if (name === '') {
@@ -20,6 +21,7 @@ $('#savePost').click(function() {
 		updatePost(id);
 	return false;
 })
+*/
 
 $('#newPost').click(function() {
 	renderDetails({});
@@ -27,12 +29,13 @@ $('#newPost').click(function() {
 
 function findAll(){
 	console.log('findAll start.')
-	$.ajax({
-		type: "GET",
-		url: rootUrl,
-		dataType: "json",
-		success: renderTable
-	});
+//	$.ajax({
+//		type: "GET",
+//		url: rootUrl,
+//		dataType: "json",
+//		success: renderTable
+//	});
+	renderTable({'id':'001'});
 }
 
 function findById(id) {
@@ -100,12 +103,12 @@ function deleteById(id) {
 }
 
 function renderTable(data) {
-	var headerRow = '<tr><th>ID</th><th>部署名</th></tr>';
+	var headerRow = '<tr><th>ID</th><th>経費一覧</th></tr>';
 
-	$('#posts').children().remove();
-
+	$('#expenses').children().remove();
+	console.log('a');
 	if (data.length === 0) {
-		$('#posts').append('<p>現在データが存在していません。</p>')
+		$('#expenses').append('<p>現在データが存在していません。</p>')
 	} else {
 		var table = $('<table>').attr('border', 1);
 		table.append(headerRow);
@@ -113,16 +116,16 @@ function renderTable(data) {
 			var row = $('<tr>');
 			row.append($('<td>').text(post.id));
 			row.append($('<td>').text(post.name));
-			row.append($('<td>').append(
-					$('<button>').text("編集").attr("type","button").attr("onclick", "findById("+post.id+')')
-				));
-			row.append($('<td>').append(
-					$('<button>').text("削除").attr("type","button").attr("onclick", "deleteById("+post.id+')')
-				));
+//			row.append($('<td>').append(
+//					$('<button>').text("編集").attr("type","button").attr("onclick", "findById("+post.id+')')
+//				));
+//			row.append($('<td>').append(
+//					$('<button>').text("削除").attr("type","button").attr("onclick", "deleteById("+post.id+')')
+//				));
 			table.append(row);
 		});
 
-		$('#posts').append(table);
+		$('#expenses').append(table);
 	}
 }
 
