@@ -28,6 +28,7 @@
 				<button id="findEmployee">検索</button>
 			</form>
 			<p>社員一覧:</p>
+			<p><a href="Expenses.html">経費一覧</a></p>
 			<div id="employees"></div>
 			<div id="insertBlock">
 				<button type="button" id="newEmployee">新規追加</button>
@@ -35,6 +36,9 @@
             <div>
 				<button id="downloadCsv" onclick="location.href='api/employees/csv'">CSVファイルに出力</button>
             </div>
+            <div id="link">
+				<a href="Expenses.html">経費一覧</a>
+			</div>
 		</div>
 		<div id="detail">
 			<p>社員詳細データ：</p>
@@ -146,6 +150,7 @@
             	</div>
 			</form>
 		</div>
+
 	</div>
 
 	<script src="js/jquery-3.3.1.min.js"></script>
