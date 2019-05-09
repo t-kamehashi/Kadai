@@ -1,6 +1,6 @@
 'use strict';
 
-var rootUrl = "/java_s04/api/v1.1/posts";
+var rootUrl = "/java_s04/api/v1.1/expenses";
 
 findAll();
 
@@ -29,13 +29,16 @@ $('#newPost').click(function() {
 
 function findAll(){
 	console.log('findAll start.')
-//	$.ajax({
-//		type: "GET",
-//		url: rootUrl,
-//		dataType: "json",
-//		success: renderTable
-//	});
-	renderTable({'id':'001'});
+	$.ajax({
+		type: "GET",
+		url: rootUrl,
+		dataType: "json",
+		success: renderTable,
+		error: function(jqXHR, textStatus, errorThrown){
+			alert('findAll失敗');
+		}
+	});
+	//renderTable({'id':'001'});
 }
 
 function findById(id) {
@@ -88,7 +91,6 @@ function updatePost(id) {
 	})
 }
 
-
 function deleteById(id) {
 	console.log('delete start - id:'+id);
 	$.ajax({
@@ -102,11 +104,11 @@ function deleteById(id) {
 	});
 }
 
-function renderTable(data) {
+function renderTable(data = {}) {
 	var headerRow = '<tr><th>ID</th><th>経費一覧</th></tr>';
 
 	$('#expenses').children().remove();
-	console.log('a');
+	console.log('rendertable開始');
 	if (data.length === 0) {
 		$('#expenses').append('<p>現在データが存在していません。</p>')
 	} else {
@@ -116,12 +118,7 @@ function renderTable(data) {
 			var row = $('<tr>');
 			row.append($('<td>').text(post.id));
 			row.append($('<td>').text(post.name));
-//			row.append($('<td>').append(
-//					$('<button>').text("編集").attr("type","button").attr("onclick", "findById("+post.id+')')
-//				));
-//			row.append($('<td>').append(
-//					$('<button>').text("削除").attr("type","button").attr("onclick", "deleteById("+post.id+')')
-//				));
+
 			table.append(row);
 		});
 
